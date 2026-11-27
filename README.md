@@ -13,6 +13,14 @@ Full-stack concept application: a **React 18** single-page client, a **PHP 8 RES
 - Guarded stock decrement (UPDATE ... WHERE stock >= q) so items cannot be oversold
 - Order history with snapshotted names and prices
 
+## Interface
+
+The client ships a hand-written motion layer - CSS keyframes plus a few small React
+helpers, no animation library: staged entrances with per-card stagger, hover lift and
+cover zoom, numbers that count up, charts that draw themselves, an animated seat map and
+boarding pass, confetti only on real success states, and shimmering skeletons while a
+request is in flight. All of it switches off under `prefers-reduced-motion: reduce`.
+
 ## Tech stack
 
 | Layer | Tech |
