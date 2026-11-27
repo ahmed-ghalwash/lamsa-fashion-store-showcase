@@ -38,6 +38,13 @@ request is in flight. All of it switches off under `prefers-reduced-motion: redu
 | Cart and checkout | ![cart](screenshots/cart.png) | ![cart mobile](screenshots/cart-mobile.png) |
 | Order history | ![orders](screenshots/orders.png) | ![orders mobile](screenshots/orders-mobile.png) |
 
+## Engineering
+
+- **API test suite:** 24 end-to-end tests (79 assertions) that start the real PHP front controller and drive it over HTTP: registration and sessions, validation, ownership checks, cart rules, checkout totals and shipping, stock decrement and full rollback when an item sells out, order privacy and cancellation with restock. They run against SQLite so no database server is needed; real MySQL is covered by the smoke test below.
+- **Docker Compose:** MySQL 8.4, the PHP API and nginx serving the React client start with one command.
+- **CI (GitHub Actions):** PHP lint and tests on PHP 8.3, the client production build, and a Docker smoke test that boots the whole stack and checks health, registration and the session endpoint against real MySQL.
+- **Endpoints added in this round:** `GET /api/orders/{id}`, `POST /api/orders/{id}/cancel` (stock goes back in the same transaction) and `GET /api/health`.
+
 ## Source code
 
 The full source code for this project - the React client, the PHP REST API, and the
